@@ -6,24 +6,48 @@ const lib = require('lib');
 * @param {integer} bars number of bars
 * @param {string} address address of person
 * @param {float} lat lattitude
-* @param {string} lng longitude
+* @param {float} lng longitude
 * @returns {any}  JSON object of route
 */
-module.exports = async (bars = 0, address = null,lat = null,lng = null, context) => {
+module.exports = async (bars = 0, address = "",lat = 0.0,lng = 0.0, context) => {
 	//converting address to a long & lat
 	let result;
 	var data = [];
-	var tmplat;
-	var tmplng;
-	var x;
+	let tmplat;
+	let tmplng;
+	let x;
+	var ids = [];
 	if (address != null) {
 		result = await lib[`${context.service.identifier}.gmap_api`]({
 			address: address
 		});
-		return result
+
+		lat = result['lat'];
+		lng = result['lng'];
+		for(i=0;i<11 && i<bars;i++){
+			if(i==0){
+				tmplat = lat;
+				tmplng = lng;
+			}else if(i<11){
+				tmplat = data[i-1]["lat"];
+				tmplng = data[i-1]["lng"];
+			}
+				result = await lib[`${context.service.identifier}.get_route`]({
+					lat: tmplat,
+					lng: tmplng,
+				});
+				for(x=1;x<11;x++){
+					if(!ids.includes(result["results"][x]["id"])){
+						ids.push(result["results"][x]["id"]);
+						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] };
+						break
+					}
+				}
+		}
+		return data
 	}
 	else{
-		for(i=0;i<11 || i<bars;i++){
+		for(i=0;i<11 && i<bars;i++){
 			if(i==0){
 				tmplat = lat;
 				tmplng = lng;
@@ -36,10 +60,13 @@ module.exports = async (bars = 0, address = null,lat = null,lng = null, context)
 					lng: tmplng,
 				});
 
-				//for(x=0;x<11;x++){
-					//if(result["results"][x]["geometry"]["id"] in data){}
-				//}
-				data[i]= {"lat":result["results"][1]["geometry"]["location"]["lat"],"lng":result["results"][1]["geometry"]["location"]["lng"].toString()};
+				for(x=1;x<11;x++){
+					if(!ids.includes(result["results"][x]["id"])){
+						ids.push(result["results"][x]["id"]);
+						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"].toString(), "id": result["results"][x]["id"] };
+						break
+					}
+				}
 		}
 		return data
 	}
