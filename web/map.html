@@ -20,18 +20,18 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">sh!t<b>Hoppens</b></a>
+                <a class="navbar-brand" href="/web/index.html"><img src="https://scontent.fyyz1-1.fna.fbcdn.net/v/t1.15752-9/33511467_1704769862909869_3936569386298507264_n.png?_nc_cat=0&oh=fe8152abf6b3d3822dabb9cb4fedbfcd&oe=5BC4798B" alt = "Logo" style = "width:180px;"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
                 <div class="collapse navbar-collapse" id="navbarsExample07">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="/web/index.html">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/web/map.html">Plan Your Crawl!</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Disabled</a>
@@ -61,7 +61,7 @@
         <div class="container" style="padding: 1em">
 
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb" style="border-radius: 0px">
+                <ol class="breadcrumb" style="border-radius: 0px;">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Library</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Data</li>
@@ -93,27 +93,15 @@
     </main>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    
     <script>
         var map;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 2,
+                zoom: 13,
                 center: {
-                    lat: -33.865427,
-                    lng: 151.196123
+                    lat: 43.4674,
+                    lng: -80.5163
                 },
                 styles: [{
                         elementType: 'geometry',
@@ -274,7 +262,20 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI&callback=initMap">
     </script>
-    
-    
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+
 </body>
 </html>
