@@ -195,7 +195,7 @@
             </div>
         </div>
 
-        <div id="map" style="width:100%;height:400px;"></div>
+        <div id="map" style="width:100%;height:800px;"></div>
 
         <div id="infowindow-content">
             <span id="place-name" class="title"></span><br>
@@ -243,7 +243,7 @@
             var directionsDisplay = new google.maps.DirectionsRenderer;
 
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
+                zoom: 15,
                 center: {
                     lat: 43.4614,
                     lng: -80.5163
@@ -408,12 +408,18 @@
                 }
 
                 // If the place has a geometry, then present it on a map.
+                /*
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 } else {
                     map.setCenter(place.geometry.location);
-                    map.setZoom(13); // Why 17? Because it looks good.
+                    map.setZoom(12); // Why 17? Because it looks good.
                 }
+                */
+                
+                map.setCenter(place.geometry.location);
+                map.setZoom(15); // Why 17? Because it looks good.
+                
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true);
 
@@ -426,7 +432,7 @@
                     ].join(' ');
                 }
 
-                infowindowContent.children['place-icon'].src = place.icon;
+                //infowindowContent.children['place-icon'].src = place.icon;
                 infowindowContent.children['place-name'].textContent = place.name;
                 infowindowContent.children['place-address'].textContent = address;
                 infowindow.open(map, marker);
@@ -513,6 +519,12 @@
 
 
             directionsDisplay.setMap(map);
+            
+            
+            
+        $('startSearch').click(function(){
+            console.log("Data:");
+        });
 
         }
 
@@ -587,10 +599,6 @@
         }
         */
         
-        $('startSearch').click(function(){
-            console.log("Data:");
-        });
-        
 /*
         $("startSearch").click(function() {
             $.getJSON("https://stephden.stdlib.com/nghack18@dev/?bars=" + numBars + "&address=" + address, function(result) {
@@ -607,11 +615,11 @@
         });
         */
     </script>
-
-
-
+<!--
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&callback=initMap">
     </script>
+
+-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&libraries=places&callback=initMap" async defer></script>
 
 </body>
