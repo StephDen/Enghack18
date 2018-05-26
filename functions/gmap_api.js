@@ -8,7 +8,7 @@ const lib = require('lib');
 * @param {string} loc Street address of place
 * @returns {object} data long and lat of address
 */
-module.exports = (name = '', context, callback) => {
+module.exports = (loc = '', context, callback) => {
 	https.get('https://maps.googleapis.com/maps/api/geocode/json?address=University+of+Waterloo&key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI', (resp) => {
 		let data = '';
 		resp.on('data', (chunk) =>{
