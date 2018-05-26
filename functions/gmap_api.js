@@ -4,7 +4,7 @@ const request = require('request');
 * @returns {object} data long and lat of address
 */
 module.exports = (address, context, callback) => {
-	var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI`;
+	var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCL8SjZWbHGwJnaLVN37bE4InxQ42p1vuQ`;
 	var data = {};
 	request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {

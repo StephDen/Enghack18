@@ -6,7 +6,7 @@ const request = require('request');
 * @returns {any} data long and lat of address
 */
 module.exports = (lat= 43.5890, lng = 0.0, context,callback) => {
-  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&type=bar&rankby=distance&key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE`;
+  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&type=bar&rankby=distance&key=AIzaSyCL8SjZWbHGwJnaLVN37bE4InxQ42p1vuQ`;
   var data = {};
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
