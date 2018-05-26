@@ -1,0 +1,1 @@
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat, long}&type=bar&rankby=distance&key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE
