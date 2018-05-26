@@ -2,9 +2,9 @@
     background: linear-gradient(216deg, #941b0c, #bc3908, #ffbf00);
     background-size: 400% 400%;
 
-    -webkit-animation: Gradient 59s ease infinite;
-    -moz-animation: Gradient 59s ease infinite;
-    animation: Gradient 59s ease infinite;
+    -webkit-animation: Gradient 21s ease infinite;
+    -moz-animation: Gradient 21s ease infinite;
+    animation: Gradient 21s ease infinite;
 }
     @-webkit-keyframes Gradient {
        0%{background-position:0% 94%}
