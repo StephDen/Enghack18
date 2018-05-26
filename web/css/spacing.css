@@ -56,7 +56,7 @@ img {
     padding-bottom: 6rem;
     margin-bottom: 0;
     background-color: #fff;
-    border-radius: 0;
+    border-radius: 0px;
 }
 
 .jumbotron p:last-child {
@@ -69,7 +69,7 @@ img {
 
 .jumbotron .container {
     max-width: 40rem;
-    border-radius: 0;
+    border-radius: 0px;
 }
 
 .album {
@@ -92,6 +92,17 @@ img {
 
 .card-text {
     font-size: 85%;
+}
+
+.breadcrumb {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
 }
 
 footer {
