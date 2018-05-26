@@ -8,11 +8,12 @@
 >All Set!
 
 #### API:
-https://stephden.stdlib.com/nghack18@dev/?<params>=<values>
->@param {integer} bars Number of bars for crawl
->@param {string} address Physical street address
->@param {float} lat Lattitude
->@param {float} lng longitude
+>https://stephden.stdlib.com/nghack18@dev/?<params>=<values>
+
+>@param {integer} bars Number of bars for crawl \n
+>@param {string} address Physical street address \n
+>@param {float} lat Lattitude \n
+>@param {float} lng longitude \n
 
 >@returns {object}  JSON object of route
 
