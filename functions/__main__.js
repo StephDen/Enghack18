@@ -9,14 +9,15 @@ const lib = require('lib');
 * @param {float} lng longitude
 * @returns {any}  JSON object of route
 */
-module.exports = async (bars = 0, address = "",lat = 0.0,lng = 0.0, context) => {
+module.exports = async (bars = 0, address = null,lat = 0.0,lng = 0.0, context) => {
 	//converting address to a long & lat
-	let result;
+	var result;
 	var data = [];
-	let tmplat;
-	let tmplng;
-	let x;
+	var tmplat;
+	var tmplng;
+	var x;
 	var ids = [];
+
 	if (address != null) {
 		result = await lib[`${context.service.identifier}.gmap_api`]({
 			address: address
@@ -36,7 +37,7 @@ module.exports = async (bars = 0, address = "",lat = 0.0,lng = 0.0, context) => 
 					lat: tmplat,
 					lng: tmplng,
 				});
-				for(x=1;x<11;x++){
+				for(x=1;x<bars;x++){
 					if(!ids.includes(result["results"][x]["id"])){
 						ids.push(result["results"][x]["id"]);
 						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] };
@@ -59,11 +60,10 @@ module.exports = async (bars = 0, address = "",lat = 0.0,lng = 0.0, context) => 
 					lat: tmplat,
 					lng: tmplng,
 				});
-
-				for(x=1;x<11;x++){
+				for(x=1;x<bars;x++){
 					if(!ids.includes(result["results"][x]["id"])){
 						ids.push(result["results"][x]["id"]);
-						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"].toString(), "id": result["results"][x]["id"] };
+						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] };
 						break
 					}
 				}
