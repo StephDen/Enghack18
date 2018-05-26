@@ -1,16 +1,18 @@
 //https://maps.googleapis.com/maps/api/geocode/json?address=University+of+Waterloo&key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI
-var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=University+of+Waterloo&key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI';
-var data = {};
 const request = require('request');
 /**
 * A basic Hello World function
-* @param {string} loc Street address of place
+* @param {string} address Street address of place
 * @returns {object} data long and lat of address
 */
-module.exports = (loc = '', context, callback) => {
+module.exports = (address, context, callback) => {
+	var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyC5sflggRGVfUwqg_yQKyqHkeCdwQFNGrI`;
+	var data = {};
 	request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-        callback(null,JSON.parse(body));
-     }
+        data = JSON.parse(body);
+				data = {"lat" : data["results"][0]["geometry"]["location"]["lat"] , "lng" : data["results"][0]["geometry"]["location"]["lng"]};
+				callback(null, data);
+		 }
 	 });
 }
