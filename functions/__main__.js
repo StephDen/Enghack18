@@ -2,7 +2,7 @@
 const request = require('request');
 const lib = require('lib');
 /**
-* A basic Hello World function
+* A Pub Crawl route finder api
 * @param {integer} bars number of bars
 * @param {string} address address of person
 * @param {float} lat lattitude
