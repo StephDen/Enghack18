@@ -5,6 +5,7 @@
   "author": "stephden <xinghaozhaoex@gmail.com>",
   "main": "functions/__main__.js",
   "dependencies": {
+    "lib": "^3.0.2",
     "request": "^2.87.0"
   },
   "private": true,
