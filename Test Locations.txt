@@ -1,0 +1,14 @@
+Western (London):
+
+https://stephden.stdlib.com/nghack18@dev/?bars=3&address=1151+Richmond+St+London
+https://stephden.stdlib.com/nghack18@dev/?bars=3&lat=43.0096&lng=-81.2737 
+
+UW (Waterloo):
+
+https://stephden.stdlib.com/nghack18@dev/?bars=3&address=256+Phillip+St+Waterloo
+https://stephden.stdlib.com/nghack18@dev/?bars=3&lat=43.472188&lng=-80.536826
+
+Vancouver:
+
+https://stephden.stdlib.com/nghack18@dev/?bars=3&address=Canada+Place+Vancouver
+https://stephden.stdlib.com/nghack18@dev/?bars=3&lat=49.2827&lng=-123.1207
