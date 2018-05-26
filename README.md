@@ -6,3 +6,6 @@ https://stephden.stdlib.com/nghack18@dev/?param=value&param=value
 @param address string,
 @param lng float,
 @param lat float,
+
+SAMPLE DATA:
+https://stephden.stdlib.com/nghack18@dev/?bars=5&address=univeristy+of+waterloo
