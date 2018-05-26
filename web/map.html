@@ -336,6 +336,7 @@
             });
 
 
+            /*
             // Sets a listener on a radio button to change the filter type on Places
             // Autocomplete.
             function setupClickListener(id, types) {
@@ -357,6 +358,8 @@
                         strictBounds: this.checked
                     });
                 });
+            
+            */
 
             infoWindow = new google.maps.InfoWindow;
 
@@ -391,24 +394,24 @@
                 handleLocationError(false, infoWindow, map.getCenter());
             }
 
-            directionsDisplay.setMap(map);
-            
-            document.getElementById('startSearch').addEventListener('click', function() {
-          getWaypoints();
-        });
+            //directionsDisplay.setMap(map);
 
-            
+            document.getElementById('startSearch').addEventListener('click', function() {
+                getWaypoints();
+            });
+
+
         }
-        
+
         function getWaypoints() {
             var numBars = document.getElementById('quantBars').value;
             var address = document.getElementById('pac-input').value;
             var barWaypoints = [];
+            var barLatLng = [];
 
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer;
 
-            alert(numBars + " " + address);
             $.getJSON("https://stephden.stdlib.com/nghack18@dev/?bars=" + numBars + "&address=" + address, function(result) {
                 for (var i = 0; i < result.length; i++) {
                     /*
@@ -417,50 +420,69 @@
                         stopover: true
                     });
                     */
-                    
-                    barWaypoints.push({location: new google.maps.LatLng(result[i]["lat"], result[i]["lng"])});
-                    
+
+                    barWaypoints.push({
+                        location: new google.maps.LatLng(result[i]["lat"], result[i]["lng"])
+                    });
+
+                    barLatLng.push({
+                        lat: result[i]["lat"],
+                        lng: result[i]["lng"]
+                    });
+
                     var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(result[i]["lat"], result[i]["lng"]),
+                        position: new google.maps.LatLng(parseFloat(result[i]["lat"]), parseFloat(result[i]["lng"])),
                         map: map
                     });
-                    
-                    console.log(barWaypoints);
                 }
             })
-            
+
+            console.log(barWaypoints);
+            console.log(barLatLng);
+
+
+            var barPath = new google.maps.Polyline({
+                path: barLatLng,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+            barPath.setMap(map);
+
             calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints);
         }
-        
+
         function calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints) {
-                var waypts = barWaypoints;
-                console.log(barWaypoints);
-                directionsService.route({
-                    origin: waypts[0],
-                    destination: waypts[waypts.length-1],
-                    waypoints: waypts,
-                    optimizeWaypoints: true,
-                    travelMode: 'WALKING'
-                }, function(response, status) {
-                    if (status === 'OK') {
-                        directionsDisplay.setDirections(response);
-                        var route = response.routes[0];
-                        var summaryPanel = document.getElementById('directions-panel');
-                        summaryPanel.innerHTML = '';
-                        // For each route, display summary information.
-                        for (var i = 0; i < route.legs.length; i++) {
-                            var routeSegment = i + 1;
-                            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                                '</b><br>';
-                            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-                        }
-                    } else {
-                        window.alert('Directions request failed due to ' + status);
+            var waypts = barWaypoints;
+            console.log(barWaypoints);
+            directionsService.route({
+                origin: waypts[0],
+                destination: waypts[waypts.length - 1],
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: 'WALKING'
+            }, function(response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    var summaryPanel = document.getElementById('directions-panel');
+                    summaryPanel.innerHTML = '';
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                            '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                     }
-                });
-            }
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
 
 
 
@@ -503,7 +525,7 @@
     </script>
 
 -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&libraries=places&callback=initMap" async defer></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&libraries=places&callback=initMap"></script>
 
 </head>
 
@@ -564,28 +586,14 @@
                             </div>
                             <div class="col">
                                 <input id="pac-input" type="text" class="form-control" placeholder="Enter a location">
+                                <small id="locationHelp" class="form-text text-muted">You'll start your bar hop here.</small>
                             </div>
-
+                            <button type="button" id="startSearch" class="btn btn-outline-dark">Crawl!</button>
                         </div>
-                        <button type="button" id="startSearch" class="btn btn-primary">Crawl!</button>
+
 
                     </form>
 
-                    <input type="radio" name="type" id="changetype-all" checked="checked">
-                    <label for="changetype-all">All</label>
-
-                    <input type="radio" name="type" id="changetype-establishment">
-                    <label for="changetype-establishment">Establishments</label>
-
-                    <input type="radio" name="type" id="changetype-address">
-                    <label for="changetype-address">Addresses</label>
-
-                    <input type="radio" name="type" id="changetype-geocode">
-                    <label for="changetype-geocode">Geocodes</label>
-                </div>
-                <div id="strict-bounds-selector" class="pac-controls">
-                    <input type="checkbox" id="use-strict-bounds" value="">
-                    <label for="use-strict-bounds">Strict Bounds</label>
                 </div>
             </div>
         </div>
