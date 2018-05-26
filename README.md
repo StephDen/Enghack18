@@ -21,8 +21,9 @@
 
 >@returns {object}  JSON object of route
 
-Enter in either a street address or the lattitude & longitude of location. The api return a JSON object
-of a recommended route. The max number of stops is 10.
+1. Enter in either a street address or the lattitude & longitude of location.
+2. The api return a JSON object of a recommended route.
+*The max number of stops is 10.*
 
 Example output:
 ```javascript
@@ -36,5 +37,7 @@ Example output:
 
 #### Dependencies:
 >node.js 8.x
+
 >stdlib
+
 >request
