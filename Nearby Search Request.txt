@@ -1,1 +1,1 @@
-https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.5890,79.6441&type=bar&rankby=distance&key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.5890,-79.6441&type=bar&rankby=distance&key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE
