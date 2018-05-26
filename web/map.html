@@ -110,130 +110,21 @@
         }
     </style>
 
-</head>
-
-<body>
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/web/index.html"><img src="https://scontent.fyyz1-1.fna.fbcdn.net/v/t1.15752-9/33511467_1704769862909869_3936569386298507264_n.png?_nc_cat=0&oh=fe8152abf6b3d3822dabb9cb4fedbfcd&oe=5BC4798B" alt = "Logo" style = "width:180px;"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-                <div class="collapse navbar-collapse" id="navbarsExample07">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/web/index.html">Home<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/web/map.html">Plan Your Crawl!</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <!--
-                    <form class="form-inline my-2 my-md-0">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    </form>
-                    -->
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main role="main">
-
-        <div class="pac-card" id="pac-card">
-            <div>
-                <div id="title">
-                    Start the Night
-                </div>
-                <div id="type-selector" class="pac-controls">
-
-                    <form>
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <input type="bars" class="form-control pac-input2" id="quantBars" aria-describedby="barsHelp" placeholder="# of Bars">
-                                <small id="barsHelp" class="form-text text-muted">Select up to 10.</small>
-                            </div>
-                            <div class="col">
-                                <input id="pac-input" type="text" class="form-control" placeholder="Enter a location">
-                            </div>
-
-                        </div>
-                        <button type="button" id="startSearch" class="btn btn-primary">Crawl!</button>
-
-                    </form>
-
-                    <input type="radio" name="type" id="changetype-all" checked="checked">
-                    <label for="changetype-all">All</label>
-
-                    <input type="radio" name="type" id="changetype-establishment">
-                    <label for="changetype-establishment">Establishments</label>
-
-                    <input type="radio" name="type" id="changetype-address">
-                    <label for="changetype-address">Addresses</label>
-
-                    <input type="radio" name="type" id="changetype-geocode">
-                    <label for="changetype-geocode">Geocodes</label>
-                </div>
-                <div id="strict-bounds-selector" class="pac-controls">
-                    <input type="checkbox" id="use-strict-bounds" value="">
-                    <label for="use-strict-bounds">Strict Bounds</label>
-                </div>
-            </div>
-        </div>
-
-        <div id="map" style="width:100%;height:800px;"></div>
-
-        <div id="infowindow-content">
-            <span id="place-name" class="title"></span><br>
-            <span id="place-address"></span>
-        </div>
-
-        <!-- /.container -->
 
 
-        <!-- FOOTER -->
-        <footer class="text-muted">
-            <div class="container">
-                <p class="float-right">
-                    <a href="#">Back to top</a>
-                </p>
-                <p>sh!t<b>Hoppens</b> | ENGHACK 2018 | University of Waterloo </p>
-            </div>
-        </footer>
-    </main>
-
-    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    
+
 
     <script>
-        
-        
         var map;
         var numBars = document.getElementById('quantBars').value;
         var address = '';
@@ -416,10 +307,10 @@
                     map.setZoom(12); // Why 17? Because it looks good.
                 }
                 */
-                
+
                 map.setCenter(place.geometry.location);
                 map.setZoom(15); // Why 17? Because it looks good.
-                
+
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true);
 
@@ -439,8 +330,6 @@
 
                 numBars = document.getElementById('quantBars').value;
 
-                console.log(numBars);
-                console.log(address);
 
 
 
@@ -502,31 +391,78 @@
                 handleLocationError(false, infoWindow, map.getCenter());
             }
 
-            // Create a <script> tag and set the USGS URL as the source.
-            var script = document.createElement('script');
-
-            // This example uses a local copy of the GeoJSON stored at
-            // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-            script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-            document.getElementsByTagName('head')[0].appendChild(script);
-
-            map.data.setStyle(function(feature) {
-                var magnitude = feature.getProperty('mag');
-                return {
-                    icon: getCircle(magnitude)
-                };
-            });
-
-
             directionsDisplay.setMap(map);
             
-            
-            
-        $('startSearch').click(function(){
-            console.log("Data:");
+            document.getElementById('startSearch').addEventListener('click', function() {
+          getWaypoints();
         });
 
+            
         }
+        
+        function getWaypoints() {
+            var numBars = document.getElementById('quantBars').value;
+            var address = document.getElementById('pac-input').value;
+            var barWaypoints = [];
+
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+
+            alert(numBars + " " + address);
+            $.getJSON("https://stephden.stdlib.com/nghack18@dev/?bars=" + numBars + "&address=" + address, function(result) {
+                for (var i = 0; i < result.length; i++) {
+                    /*
+                    barWaypoints.push({
+                        location: result[i]["address"],
+                        stopover: true
+                    });
+                    */
+                    
+                    barWaypoints.push({location: new google.maps.LatLng(result[i]["lat"], result[i]["lng"])});
+                    
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(result[i]["lat"], result[i]["lng"]),
+                        map: map
+                    });
+                    
+                    console.log(barWaypoints);
+                }
+            })
+            
+            calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints);
+        }
+        
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints) {
+                var waypts = barWaypoints;
+                console.log(barWaypoints);
+                directionsService.route({
+                    origin: waypts[0],
+                    destination: waypts[waypts.length-1],
+                    waypoints: waypts,
+                    optimizeWaypoints: true,
+                    travelMode: 'WALKING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                        var route = response.routes[0];
+                        var summaryPanel = document.getElementById('directions-panel');
+                        summaryPanel.innerHTML = '';
+                        // For each route, display summary information.
+                        for (var i = 0; i < route.legs.length; i++) {
+                            var routeSegment = i + 1;
+                            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                                '</b><br>';
+                            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                        }
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+
+
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
@@ -536,59 +472,6 @@
             infoWindow.open(map);
         }
 
-        function getCircle(magnitude) {
-            return {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: 'red',
-                fillOpacity: .2,
-                scale: Math.pow(2, magnitude) / 2,
-                strokeColor: 'white',
-                strokeWeight: .5
-            };
-        }
-
-        function eqfeed_callback(results) {
-            map.data.addGeoJson(results);
-        }
-
-        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-            var waypts = [];
-            var checkboxArray = document.getElementById('waypoints');
-            for (var i = 0; i < checkboxArray.length; i++) {
-                if (checkboxArray.options[i].selected) {
-                    waypts.push({
-                        location: checkboxArray[i].value,
-                        stopover: true
-                    });
-                }
-            }
-
-            directionsService.route({
-                origin: document.getElementById('start').value,
-                destination: document.getElementById('end').value,
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: 'WALKING'
-            }, function(response, status) {
-                if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                    var route = response.routes[0];
-                    var summaryPanel = document.getElementById('directions-panel');
-                    summaryPanel.innerHTML = '';
-                    // For each route, display summary information.
-                    for (var i = 0; i < route.legs.length; i++) {
-                        var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                            '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-                    }
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            });
-        }
 
         /*
         document.getElementById('startSearch').addEventListener('click', findWaypoints);
@@ -598,29 +481,135 @@
             window.alert(numBars);
         }
         */
-        
-/*
-        $("startSearch").click(function() {
-            $.getJSON("https://stephden.stdlib.com/nghack18@dev/?bars=" + numBars + "&address=" + address, function(result) {
-                $.each(result, function(i, field) {
 
-                    var barWaypoints = [];
-                    for (var i = 0; i < result.id.length; i++) {
-                        barWaypoints.push(result.id[i].value);
-                    }
-                    window.alert(barWaypoints);
+        /*
+                $("startSearch").click(function() {
+                    $.getJSON("https://stephden.stdlib.com/nghack18@dev/?bars=" + numBars + "&address=" + address, function(result) {
+                        $.each(result, function(i, field) {
 
-                })
-            });
-        });
-        */
+                            var barWaypoints = [];
+                            for (var i = 0; i < result.id.length; i++) {
+                                barWaypoints.push(result.id[i].value);
+                            }
+                            window.alert(barWaypoints);
+
+                        })
+                    });
+                });
+                */
     </script>
-<!--
+    <!--
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&callback=initMap">
     </script>
 
 -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcpknVA0AiNiR_zjO8EJpJmHm6gf9TtHE&libraries=places&callback=initMap" async defer></script>
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/web/index.html"><img src="https://scontent.fyyz1-1.fna.fbcdn.net/v/t1.15752-9/33511467_1704769862909869_3936569386298507264_n.png?_nc_cat=0&oh=fe8152abf6b3d3822dabb9cb4fedbfcd&oe=5BC4798B" alt = "Logo" style = "width:180px;"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/web/index.html">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/web/map.html">Plan Your Crawl!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown07">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--
+                    <form class="form-inline my-2 my-md-0">
+                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    </form>
+                    -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+
+        <div class="pac-card" id="pac-card">
+            <div>
+                <div id="title">
+                    Start the Night
+                </div>
+                <div id="type-selector" class="pac-controls">
+
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <input type="bars" class="form-control pac-input2" id="quantBars" aria-describedby="barsHelp" placeholder="# of Bars">
+                                <small id="barsHelp" class="form-text text-muted">Select up to 10.</small>
+                            </div>
+                            <div class="col">
+                                <input id="pac-input" type="text" class="form-control" placeholder="Enter a location">
+                            </div>
+
+                        </div>
+                        <button type="button" id="startSearch" class="btn btn-primary">Crawl!</button>
+
+                    </form>
+
+                    <input type="radio" name="type" id="changetype-all" checked="checked">
+                    <label for="changetype-all">All</label>
+
+                    <input type="radio" name="type" id="changetype-establishment">
+                    <label for="changetype-establishment">Establishments</label>
+
+                    <input type="radio" name="type" id="changetype-address">
+                    <label for="changetype-address">Addresses</label>
+
+                    <input type="radio" name="type" id="changetype-geocode">
+                    <label for="changetype-geocode">Geocodes</label>
+                </div>
+                <div id="strict-bounds-selector" class="pac-controls">
+                    <input type="checkbox" id="use-strict-bounds" value="">
+                    <label for="use-strict-bounds">Strict Bounds</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="map" style="width:100%;height:700px;"></div>
+
+        <div id="infowindow-content">
+            <span id="place-name" class="title"></span><br>
+            <span id="place-address"></span>
+        </div>
+
+        <!-- /.container -->
+
+
+        <!-- FOOTER -->
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>sh!t<b>Hoppens</b> | ENGHACK 2018 | University of Waterloo </p>
+            </div>
+        </footer>
+    </main>
 
 </body>
 </html>
