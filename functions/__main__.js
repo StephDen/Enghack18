@@ -1,4 +1,3 @@
-//https://maps.googleapis.com/maps/api/geocode/json?address=University+of+Waterloo&key=AIzaSyCL8SjZWbHGwJnaLVN37bE4InxQ42p1vuQ
 const request = require('request');
 const lib = require('lib');
 /**
@@ -40,7 +39,7 @@ module.exports = async (bars = 0, address = null,lat = 0.0,lng = 0.0, context) =
 				for(x=1;x<bars;x++){
 					if(!ids.includes(result["results"][x]["id"])){
 						ids.push(result["results"][x]["id"]);
-						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] };
+						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] ,"address": result["results"][x]["vicinity"]};
 						break
 					}
 				}
@@ -63,7 +62,7 @@ module.exports = async (bars = 0, address = null,lat = 0.0,lng = 0.0, context) =
 				for(x=1;x<bars;x++){
 					if(!ids.includes(result["results"][x]["id"])){
 						ids.push(result["results"][x]["id"]);
-						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"] };
+						data[i]= {"lat":result["results"][x]["geometry"]["location"]["lat"],"lng":result["results"][x]["geometry"]["location"]["lng"], "id": result["results"][x]["id"], "address": result["results"][x]["vicinity"] };
 						break
 					}
 				}
