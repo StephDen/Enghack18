@@ -128,6 +128,8 @@
         var map;
         var numBars = document.getElementById('quantBars').value;
         var address = '';
+        barWaypoints = [];
+        barLatLng = [];
 
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
@@ -406,8 +408,9 @@
         function getWaypoints() {
             var numBars = document.getElementById('quantBars').value;
             var address = document.getElementById('pac-input').value;
-            var barWaypoints = [];
-            var barLatLng = [];
+            barWaypoints = [];
+            barLatLng = [];
+
 
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -422,7 +425,8 @@
                     */
 
                     barWaypoints.push({
-                        location: new google.maps.LatLng(result[i]["lat"], result[i]["lng"])
+                        location: new google.maps.LatLng(result[i]["lat"], result[i]["lng"]),
+                        stopover: true
                     });
 
                     barLatLng.push({
@@ -450,16 +454,18 @@
             });
 
             barPath.setMap(map);
+            
+            sleep(1000);
 
-            calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints);
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
         }
 
-        function calculateAndDisplayRoute(directionsService, directionsDisplay, barWaypoints) {
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
             var waypts = barWaypoints;
-            console.log(barWaypoints);
+            console.log(barLatLng);
             directionsService.route({
-                origin: waypts[0],
-                destination: waypts[waypts.length - 1],
+                origin: new google.maps.LatLng(barLatLng[0]["lat"], barLatLng[0]["lng"]),
+                destination: new google.maps.LatLng(barLatLng[barLatLng.length-1]["lat"], barLatLng[barLatLng.length-1]["lng"]),
                 waypoints: waypts,
                 optimizeWaypoints: true,
                 travelMode: 'WALKING'
@@ -492,6 +498,15 @@
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.');
             infoWindow.open(map);
+        }
+
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
         }
 
 
