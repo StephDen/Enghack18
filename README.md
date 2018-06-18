@@ -1,5 +1,5 @@
 ![logo](Capture.JPG)
-## A Pub Crawl web app & api
+## A Pub Crawl microservice (Web App & API)
 
 #### Web App:
 >Go to https://sh1thoppens.azurewebsites.net
@@ -7,7 +7,7 @@
 >Choose number of stops
 >All Set!
 
-#### API:
+#### API(GET method only):
 >https://stephden.stdlib.com/nghack18@dev/?<params>=<values>
 
 >@param {integer} bars Number of bars for crawl
